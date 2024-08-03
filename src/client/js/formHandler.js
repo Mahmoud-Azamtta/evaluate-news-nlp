@@ -13,7 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 const handleInvalidURL = (btn, input, feedback) => {
   const isValid = isValidURL(input.value);
-  console.log(input.value);
   if (input.value.length === 0) {
     feedback.innerHTML = "";
     return;
@@ -40,6 +39,11 @@ const handleError = (show, msg) => {
 const renderResponse = (data) => {
   const results = document.getElementById("results");
 
+  if (!data) {
+    handleError(true, "Interal server error");
+    return;
+  }
+
   if (data?.error) {
     handleError(true, data.error);
     return;
@@ -58,7 +62,6 @@ const handleSubmit = async (event) => {
   event.preventDefault();
 
   const input = document.querySelector("#url-form input");
-  console.log(input.value);
   handleError(false, "");
   setLoading(true);
   try {
@@ -67,7 +70,6 @@ const handleSubmit = async (event) => {
     });
     renderResponse(response.data);
   } catch (error) {
-    console.log(error);
   } finally {
     setLoading(false);
   }
