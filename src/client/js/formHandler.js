@@ -1,8 +1,6 @@
 import axios from "axios";
 import { isValidURL } from "./validateURL";
 
-const serverURL = "https://localhost:8000/api";
-
 document.addEventListener("DOMContentLoaded", () => {
   const input = document.querySelector("#url-form input");
   const btn = document.getElementById("submit-button");
@@ -58,6 +56,7 @@ const renderResponse = (data) => {
   `;
 };
 
+// Function to send data to the server
 const handleSubmit = async (event) => {
   event.preventDefault();
 
@@ -74,8 +73,6 @@ const handleSubmit = async (event) => {
     setLoading(false);
   }
 };
-
-// Function to send data to the server
 
 // Export the handleSubmit function
 export { handleSubmit };
