@@ -1,0 +1,40 @@
+header {
+  $bg-dark: #1d2021;
+  $gray-color: #545454;
+  $font-color: #ccc;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 40px;
+  background-color: $bg-dark;
+  border-bottom: 1px solid $gray-color;
+  box-shadow: 0px 16px 16px rgba(28, 28, 28, 0.5);
+
+  nav {
+    a {
+      color: $font-color;
+
+      &:hover {
+        color: #645dba
+      }
+
+      &:active {
+        color: #2E236C;
+      }
+    }
+  }
+
+  .logo {
+    font-size: 1.25em;
+    font-style: italic;
+    font-weight: bold;
+    color: #645dba;
+    display: flex;
+    align-items: center;
+  }
+
+  svg {
+    margin-left: 10px;
+  }
+}
