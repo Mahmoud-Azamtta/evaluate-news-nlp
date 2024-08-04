@@ -21,14 +21,21 @@ The application makes use of [MeaningCloud](https://www.meaningcloud.com/)'s API
      ```shell
      npm run build-dev
      ```
+     Now the development environment is running on port 3000
 - To run unit test cases:
   ```shell
   npm run test
   ```
 - Finally to start the production mode
+  1. Build the `dist` folder:
   ```shell
   npm run build-prod
   ```
+  2. Run the application
+  ```shell
+  npm run start
+  ```
+  Server will be running on port 3000
 
 ---
 
