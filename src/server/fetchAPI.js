@@ -11,9 +11,11 @@ const analyzeURL = async (url, key) => {
       const { code } = data.status;
       if (code != 0) {
         if (code == 100) {
-          responseBody = { error: "Provided URL is invalid" };
+          responseBody = {
+            error: `${data.status.msg}, API key or provided URL is invalid`,
+          };
         } else {
-          responseBody = { error: response.data.status.msg };
+          responseBody = { error: data.status.msg };
         }
       } else {
         responseBody = {
@@ -27,7 +29,8 @@ const analyzeURL = async (url, key) => {
       return responseBody;
     })
     .catch((error) => {
-      responseBody = { error: error };
+      console.log(error);
+      responseBody = { error: "MeaningCloud server error" };
       return responseBody;
     });
 
