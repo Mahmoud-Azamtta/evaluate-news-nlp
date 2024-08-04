@@ -1,24 +1,16 @@
 import axios from "axios";
 import { isValidURL } from "./validateURL";
 
-document.addEventListener("DOMContentLoaded", () => {
-  const input = document.querySelector("#url-form input");
-  const btn = document.getElementById("submit-button");
-  const feedback = document.querySelector(".input-feedback");
+const handleURLValidation = (value) => {
+  const feedback = document.querySelector(".feedback-wrapper");
 
-  input.addEventListener("change", handleInvalidURL(btn, input, feedback));
-});
-
-const handleInvalidURL = (btn, input, feedback) => {
-  const isValid = isValidURL(input.value);
-  if (input.value.length === 0) {
-    feedback.innerHTML = "";
-    return;
-  }
-  btn.disabled = !isValid;
+  const isValid = isValidURL(value);
   if (!isValid) {
-    feedback.innerHTML = "Please enter a valid URL";
+    feedback.innerHTML =
+      "<p class='feedback-error'>Please enter a valid URL</p>";
+    return false;
   }
+  return true;
 };
 
 const setLoading = (show) => {
@@ -61,13 +53,23 @@ const handleSubmit = async (event) => {
   event.preventDefault();
 
   const input = document.querySelector("#url-form input");
+  const feedback = document.querySelector(".feedback-wrapper");
+  feedback.innerHTML = "";
   handleError(false, "");
+
+  const isValid = handleURLValidation(input.value);
+  if (!isValid) {
+    return;
+  }
+
   setLoading(true);
   try {
     const response = await axios.post("http://localhost:8000/", {
       url: input.value,
     });
     renderResponse(response.data);
+    feedback.innerHTML =
+      "<p class='feedback-success'>Successfully analyzed</p>";
   } catch (error) {
   } finally {
     setLoading(false);

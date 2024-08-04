@@ -1,8 +1,10 @@
-const URL_PATTERN =
-  /^(http(s):\/\/.)[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)$/g;
-
 const isValidURL = (url) => {
-  return URL_PATTERN.test(url);
+  try {
+    const parsedUrl = new URL(url);
+    return parsedUrl.protocol === "http:" || parsedUrl.protocol === "https:";
+  } catch (_) {
+    return false;
+  }
 };
 
 export { isValidURL };

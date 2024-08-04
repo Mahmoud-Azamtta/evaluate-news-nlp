@@ -26,10 +26,18 @@ form {
     }
   }
 
-  .input-feedback {
-    margin-top: 0;
-    margin-bottom: 16px;
-    color: #df1b1b
+  .feedback-wrapper {
+    .feedback-error {
+      margin-top: 0;
+      margin-bottom: 16px;
+      color: #df1b1b
+    }
+
+    .feedback-success {
+      margin-top: 0;
+      margin-bottom: 16px;
+      color: #4bb543
+    }
   }
 
   #submit-button {
@@ -79,6 +87,5 @@ form {
       margin: auto;
       margin-top: 1em;
     }
-
   }
 }
